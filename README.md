@@ -11,7 +11,7 @@ In MA-CIR, we observe that current CIR models struggle with negation (or replace
 To tackle this, we propose leveraging strong text encoders, particularly those based on large language models (LLMs), and fine-tuning them using carefully constructed text triplets that include hard negatives, thereby enhancing their compositional understanding.
 
 <div align="center">
-  <img src="figure_001.png" height="256">
+  <img src="figure_001.png" height="350">
 </div>
 
 ## MACIR dataset 
