@@ -15,13 +15,25 @@ To tackle this, we propose leveraging strong text encoders, particularly those b
 </div>
 
 ## MACIR dataset 
-This will be available soon
-
+The dataset can be found in this [link](https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW)
 
 ## Evaluation
-This will be available soon
-
-
+```bash
+$ python3 eval.py \
+--eval-type phi \
+--dataset-path /path/to/your_dataset/ \
+--phi-checkpoint-name "/path/to/your_checkpoint/phi_best.pt"   \
+--eval_level "full" \ 
+--clip_model_name large
+```
+```bash
+$ python3 eval.py \
+--eval-type phi \
+--dataset-path /path/to/your_dataset/ \
+--phi-checkpoint-name "/path/to/your_checkpoint/phi_best.pt"   \
+--eval_level "full_splits" \ 
+--clip_model_name large
+```
 
 
 ## Acknowledgement
