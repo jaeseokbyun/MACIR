@@ -19,7 +19,7 @@ The dataset can be found in this [link](https://drive.google.com/drive/folders/1
 
 ## Evaluation
 
-For the default setting (including the whole database),
+For the default setting (including the whole database)
 ```bash
 $ python3 eval.py \
 --eval-type phi \
@@ -29,7 +29,7 @@ $ python3 eval.py \
 --clip_model_name large
 ```
 
-For the default setting (including the whole database, print separately),
+For the default setting (including the whole database, print separately)
 ```bash
 $ python3 eval.py \
 --eval-type phi \
@@ -39,7 +39,7 @@ $ python3 eval.py \
 --clip_model_name large
 ```
 
-For restricted evaluation for "remove" type, 
+For restricted evaluation for "remove" type
 ```bash
 $ python3 eval.py \
 --eval-type phi \
