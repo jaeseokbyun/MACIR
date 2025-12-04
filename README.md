@@ -15,7 +15,7 @@ To tackle this, we propose leveraging strong text encoders, particularly those b
 </div>
 
 ## MACIR dataset 
-The dataset can be found in this [link](https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW](https://drive.google.com/drive/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?usp=sharing)
+The dataset can be found in this [link](https://drive.google.com/drive/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?usp=sharing)
 
 ## Evaluation
 
