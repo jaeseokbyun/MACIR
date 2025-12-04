@@ -15,9 +15,11 @@ To tackle this, we propose leveraging strong text encoders, particularly those b
 </div>
 
 ## MACIR dataset 
-The dataset can be found in this [link]([https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW](https://drive.google.com/drive/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?usp=sharing))
+The dataset can be found in this [link]([https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW](https://drive.google.com/drive/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?usp=sharing)
 
 ## Evaluation
+
+For the default setting (including the whole database),
 ```bash
 $ python3 eval.py \
 --eval-type phi \
@@ -27,6 +29,7 @@ $ python3 eval.py \
 --clip_model_name large
 ```
 
+For the default setting (including the whole database, print separately),
 ```bash
 $ python3 eval.py \
 --eval-type phi \
@@ -36,7 +39,7 @@ $ python3 eval.py \
 --clip_model_name large
 ```
 
-For restricted evaluation for "remove" type
+For restricted evaluation for "remove" type, 
 ```bash
 $ python3 eval.py \
 --eval-type phi \
