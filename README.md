@@ -15,7 +15,7 @@ To tackle this, we propose leveraging strong text encoders, particularly those b
 </div>
 
 ## MACIR dataset 
-The dataset can be found in this [link](https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW)
+The dataset can be found in this [link]([https://drive.google.com/drive/u/1/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?q=sharedwith:public%20parent:1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW](https://drive.google.com/drive/folders/1n-rkVgvnFJ49JxJL9bl2UPefaw3uTqhW?usp=sharing))
 
 ## Evaluation
 ```bash
@@ -26,6 +26,7 @@ $ python3 eval.py \
 --eval_level "full" \ 
 --clip_model_name large
 ```
+
 ```bash
 $ python3 eval.py \
 --eval-type phi \
@@ -35,6 +36,16 @@ $ python3 eval.py \
 --clip_model_name large
 ```
 
+For restricted evaluation for "remove" type
+```bash
+$ python3 eval.py \
+--eval-type phi \
+--dataset-path /path/to/your_dataset/ \
+--phi-checkpoint-name "/path/to/your_checkpoint/phi_best.pt"   \
+--split "remove" \ 
+--eval_level "restricted" \ 
+--clip_model_name large
+```
 
 ## Acknowledgement
 Our code implementation is largely borrowed from [LinCIR](https://github.com/navervision/lincir/tree/master) and [E5-V](https://github.com/kongds/E5-V). We appreciate the original authors for their invaluable contributions.
