@@ -140,15 +140,14 @@ def contrastive_loss(v1: torch.Tensor, v2: torch.Tensor, temperature: float) -> 
     return loss
 
 @torch.no_grad()
-def extract_pseudo_tokens_without_phi(clip_model: CLIPVisionModelWithProjection, phi: Phi, dataset: Dataset, args) -> Tuple[torch.Tensor, List[str]]:
+def extract_pseudo_tokens_without_phi(clip_model: CLIPVisionModelWithProjection, dataset: Dataset, args) -> Tuple[torch.Tensor, List[str]]:
     """
-    Extracts pseudo tokens from a dataset using a CLIP model and a phi model
+    Extracts pseudo tokens from a dataset using a CLIP model 
     """
     data_loader = DataLoader(dataset=dataset, batch_size=32, num_workers=10, pin_memory=False,
                              collate_fn=collate_fn)
     predicted_tokens = []
     names_list = []
-    print(f"Extracting tokens using phi model")
     for batch in tqdm(data_loader):
         images = batch.get('image')
         names = batch.get('image_name')
@@ -164,7 +163,7 @@ def extract_pseudo_tokens_without_phi(clip_model: CLIPVisionModelWithProjection,
         
         if args.l2_normalize:
             image_features = F.normalize(image_features, dim=-1)
-        batch_predicted_tokens = image_features #phi(image_features)
+        batch_predicted_tokens = image_features 
         predicted_tokens.append(batch_predicted_tokens.cpu())
         names_list.extend(names)
     predicted_tokens = torch.vstack(predicted_tokens)    
@@ -198,38 +197,6 @@ def extract_pseudo_tokens_with_phi(clip_model: CLIPVisionModelWithProjection, ph
         if args.l2_normalize:
             image_features = F.normalize(image_features, dim=-1)
         batch_predicted_tokens = phi(image_features)
-        predicted_tokens.append(batch_predicted_tokens.cpu())
-        names_list.extend(names)
-    predicted_tokens = torch.vstack(predicted_tokens)    
-    return predicted_tokens, names_list
-
-
-@torch.no_grad()
-def extract_pseudo_tokens_without_phi(clip_model: CLIPVisionModelWithProjection, phi: Phi, dataset: Dataset, args) -> Tuple[torch.Tensor, List[str]]:
-    """
-    Extracts pseudo tokens from a dataset using a CLIP model and a phi model
-    """
-    data_loader = DataLoader(dataset=dataset, batch_size=32, num_workers=10, pin_memory=False,
-                             collate_fn=collate_fn)
-    predicted_tokens = []
-    names_list = []
-    print(f"Extracting tokens using phi model")
-    for batch in tqdm(data_loader):
-        images = batch.get('image')
-        names = batch.get('image_name')
-        if images is None:
-            images = batch.get('reference_image')
-        if names is None:
-            names = batch.get('reference_name')
-
-        images = images.to(device)
-        image_from_clip = clip_model(pixel_values=images.half())
-        image_features=image_from_clip.image_embeds
-        image_last_hidden = image_from_clip.last_hidden_state
-        
-        if args.l2_normalize:
-            image_features = F.normalize(image_features, dim=-1)
-        batch_predicted_tokens = image_features
         predicted_tokens.append(batch_predicted_tokens.cpu())
         names_list.extend(names)
     predicted_tokens = torch.vstack(predicted_tokens)    

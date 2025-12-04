@@ -426,17 +426,20 @@ def main():
                 torch.load(args.image_encoder_checkpoint_name, map_location=device)[
                 image_encoder.__class__.__name__])
             image_encoder=image_encoder.eval()
-        phi = Phi(input_dim=text_encoder.config.projection_dim,
-                    hidden_dim=text_encoder.config.projection_dim * 4,
-                    output_dim=text_encoder.config.hidden_size, dropout=0.5).to(
-            device)
+        if args.eval_type == 'phi':
+            phi = Phi(input_dim=text_encoder.config.projection_dim,
+                        hidden_dim=text_encoder.config.projection_dim * 4,
+                        output_dim=text_encoder.config.hidden_size, dropout=0.5).to(
+                device)
 
-        if args.phi_checkpoint_name:
-            phi.load_state_dict(
-                    torch.load(args.phi_checkpoint_name, map_location=device)[
-                    phi.__class__.__name__])
+            if args.phi_checkpoint_name:
+                phi.load_state_dict(
+                        torch.load(args.phi_checkpoint_name, map_location=device)[
+                        phi.__class__.__name__])
 
-        phi = phi.eval()
+            phi = phi.eval()
+        else:
+            phi=None
     
         
     if args.preprocess_type == 'targetpad':
@@ -453,8 +456,8 @@ def main():
     
     image_encoder = image_encoder.float().to(device)
     text_encoder = text_encoder.float().to(device)
-    if args.eval_type=="image" or args.eval_type=="text_image":
-        pseudo_tokens, ref_names_list = extract_pseudo_tokens_without_phi(image_encoder, phi, query_test_dataset, args)
+    if args.eval_type=="image" or args.eval_type=="text" or args.eval_type=="text_image":
+        pseudo_tokens, ref_names_list = extract_pseudo_tokens_without_phi(image_encoder,  query_test_dataset, args)
     else:    
         pseudo_tokens, ref_names_list = extract_pseudo_tokens_with_phi(image_encoder, phi, query_test_dataset, args)
     pseudo_tokens = pseudo_tokens.to(device)
