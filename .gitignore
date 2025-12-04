@@ -1,0 +1,29 @@
+gnore Python cache
+__pycache__/
+*.pyc
+
+# Ignore shell scripts
+*.sh
+
+# Ignore results logs
+results_*.txt
+
+# Ignore model weights or checkpoints
+*.pt
+*.pth
+*.bin
+
+# Ignore HuggingFace cached models
+hf_models/
+
+# Ignore dataset or image folders (if any)
+data/
+images/
+datasets/
+
+# Ignore temporary or backup files
+*.tmp
+*.bak
+*.swp
+.DS_Store
+
